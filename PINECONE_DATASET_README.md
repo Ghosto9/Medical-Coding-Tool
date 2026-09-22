@@ -3,7 +3,7 @@
 Builds a private Pinecone vector index from the official FY2026 ICD-10-CM code-description release published by CDC/NCHS and linked by CMS.
 
 Official source:
-https://ftp.cdc.gov/pub/health_statistics/nchs/publications/ICD10CM/2026/icd10cm-code-descriptions-2026.zip
+https://www.cms.gov/files/zip/2026-code-descriptions-tabular-order.zip
 
 FY2026 is effective for healthcare services/encounters from October 1, 2026 through September 30, 2026.
 
