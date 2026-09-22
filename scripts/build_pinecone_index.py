@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Pinecone ICD-10-CM vector index from official CDC/NCHS FY2027 files."""
+"""Build a Pinecone ICD-10-CM vector index from official CDC/NCHS FY2026 files."""
 from __future__ import annotations
 
 import argparse
@@ -13,10 +13,10 @@ from typing import Iterable
 
 SOURCE_URL = (
     "https://ftp.cdc.gov/pub/health_statistics/nchs/publications/"
-    "ICD10CM/2027/icd10cm-code-descriptions-2027.zip"
+    "ICD10CM/2026/icd10cm-code-descriptions-2026.zip"
 )
-DEFAULT_INDEX = "amaze-icd10cm-2027"
-DEFAULT_NAMESPACE = "icd10cm_2027"
+DEFAULT_INDEX = "amaze-icd10cm-2026"
+DEFAULT_NAMESPACE = "icd10cm_2026"
 DEFAULT_MODEL = "text-embedding-3-small"
 
 CODE_RE = re.compile(
@@ -179,9 +179,9 @@ def build_pinecone(
                 "parent_code": row["parent_code"] or "",
                 "level": row["level"],
                 "billable": row["billable"],
-                "source": "CDC/NCHS ICD-10-CM FY2027",
-                "effective_from": "2026-10-01",
-                "effective_to": "2027-09-30",
+                "source": "CDC/NCHS ICD-10-CM FY2026",
+                "effective_from": "2025-10-01",
+                "effective_to": "2026-09-30",
             }
             vectors.append(
                 {
@@ -205,7 +205,7 @@ def main() -> int:
     parser.add_argument("--model", default=os.getenv("OPENAI_EMBEDDING_MODEL", DEFAULT_MODEL))
     args = parser.parse_args()
 
-    print("Downloading official FY2027 ICD-10-CM descriptions...")
+    print("Downloading official FY2026 ICD-10-CM descriptions...")
     blob = download_source()
     rows = add_hierarchy(parse_catalog(extract_description_text(blob)))
 
